@@ -137,6 +137,9 @@ with open(file_path, 'w') as json_file:
     json.dump(packaged, json_file)
 ```
 
-
-
 Finally, the JavaScript script embedded in this [index.html](https://github.com/altilunium/BRT-tj/blob/main/index.html) file will display the information.
+
+### Special Thanks
+
+* [Poe](https://poe.com/s/8Zx0xk9WHpSFcOgKJL52)
+* [Ivan Sanchez's answer to the question "How to add text below a marker in leaflet?" on StackOverflow](https://stackoverflow.com/a/59422485)
