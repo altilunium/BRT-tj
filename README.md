@@ -4,7 +4,7 @@ BRT Transjakarta
 ![image](https://github.com/altilunium/BRT-tj/assets/70379302/c6fb1029-12cc-423c-99b3-1f947a74df09)
 
 
-[https://altilunium.github.io/brt-tj](https://altilunium.github.io/BRT-tj/)
+[https://altilunium.github.io/BRT-tj](https://altilunium.github.io/BRT-tj/)
 
 
 ### Data source
