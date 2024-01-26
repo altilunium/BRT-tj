@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BRT Transjakarta</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+  <style>
+  	#map {
+  		position: absolute;
+  		width: 100%;
+  		height: 100%;
+  		top:0px;
+  		left:0px;
+  		z-index: -39;
+  	}
+  	.text-below-marker {
+min-width: 100px;
+    left: -50px;
+    /* text-align: center; */
+    /* height: auto; */
+    /* border: 1px solid red; */
+    top: -75px;
+    background-color: white;
+    padding: 14px;
+    height: 301px;
+    padding-bottom: 13px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #2d82bf;
+}
+
+select {
+
+font-size:20px;
+padding:3px 5px;
+}
+  </style>
+
+</head>
+<body>
+  <select id="myDropdown" onchange="handleDropdownChange()">
+    <!-- Dropdown options will be dynamically generated using JavaScript -->
+  </select>
+
+  <select id="myDropdown2" onchange="handleDropdownChange2()">
+    <!-- Dropdown options will be dynamically generated using JavaScript -->
+  </select>
+
+  <div id="map"></div>
+
+
+
+  <script src="data.json"></script>
+  <script>
+  		console.log(a)
+
+var map = L.map('map', {
+      zoomControl: false
+    }).setView([-6.2102,106.8633], 13);
+ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
+
+
+    }).addTo(map);
+
+
+    // JavaScript code
+    const data = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+
+    const dropdown = document.getElementById('myDropdown');
+    const dropdown2 = document.getElementById('myDropdown2');
+
+
+
+for (let i = 0; i < a.length; i++) {
+
+  const option = document.createElement('option');
+      option.text = a[i]["name"];
+      option.id = i
+      dropdown.add(option);
+}
+
+    
+
+
+function handleDropdownChange() {
+      const dropdown = document.getElementById('myDropdown');
+      const selectedOption = dropdown.value;
+      console.log('Selected option:', selectedOption);
+      const selectedOptionx = dropdown.options[dropdown.selectedIndex];
+      const selectedOptionId = selectedOptionx.id;
+      console.log('Selected option ID:', selectedOptionId);
+
+
+      while (dropdown2.options.length > 0) {
+        dropdown2.remove(0);
+      }
+
+      for (let i = 0; i < a[selectedOptionId]["routes"].length; i++) {
+
+  const option = document.createElement('option');
+      option.text = a[selectedOptionId]["routes"][i]["name"];
+      option.id = i
+      dropdown2.add(option);
+}
+
+
+handleDropdownChange2()
+
+    }
+
+
+
+while (dropdown2.options.length > 0) {
+        dropdown2.remove(0);
+      }
+
+for (let i = 0; i < a[0]["routes"].length; i++) {
+
+  const option = document.createElement('option');
+      option.text = a[0]["routes"][i]["name"];
+      option.id = i
+      dropdown2.add(option);
+}
+
+
+var markers = []
+
+function handleDropdownChange2() {
+      const dropdown = document.getElementById('myDropdown');
+      const dropdown2 = document.getElementById('myDropdown2');
+      const selectedOptionx = dropdown.options[dropdown.selectedIndex];
+      const selectedOptionId = selectedOptionx.id;
+      const selectedOptionx2 = dropdown2.options[dropdown2.selectedIndex];
+      const selectedOptionId2 = selectedOptionx2.id;
+      console.log('Selected option ID:', selectedOptionId, selectedOptionId2);
+      console.log(a[selectedOptionId]["routes"][selectedOptionId2]["stops"])
+      console.log(a[selectedOptionId]["routes"][selectedOptionId2]["coords"])
+
+
+      markers.forEach(function(marker) {
+        map.removeLayer(marker);
+      });
+
+
+      count = 1
+      a[selectedOptionId]["routes"][selectedOptionId2]["stops"].forEach(function(coord) {
+      var marker = L.marker(coord["coords"]).addTo(map);
+      var marker2 = L.marker(coord["coords"], {
+  icon: L.divIcon({
+      html: count +" : "+ coord["name"],
+      className: 'text-below-marker',
+    })
+}).addTo(map);
+
+var polyline = L.polyline(a[selectedOptionId]["routes"][selectedOptionId2]["coords"]).addTo(map);
+
+
+      count = count + 1
+
+      markers.push(marker);
+    markers.push(marker2);
+    markers.push(polyline)
+    });
+
+
+
+    }
+
+    
+
+handleDropdownChange2()
+
+
+
+ 
+  </script>
+</body>
+</html>
