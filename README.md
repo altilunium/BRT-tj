@@ -143,3 +143,4 @@ Finally, the JavaScript script embedded in this [index.html](https://github.com/
 
 * [Poe](https://poe.com/s/8Zx0xk9WHpSFcOgKJL52)
 * [Ivan Sanchez's answer to the question "How to add text below a marker in leaflet?" on StackOverflow](https://stackoverflow.com/a/59422485)
+* [Love withsmile's question on OpenStreetMap Indonesia Telegram](https://t.me/osmindonesia/5384)
